@@ -77,6 +77,8 @@ nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
 nnoremap <F2> :w<CR>
 inoremap <F2> <esc>:w<CR>
 
+map QQ :q!<CR>
+
 "# Tab
 nnoremap > >>
 nnoremap < <<
@@ -95,8 +97,8 @@ nnoremap <leader><Space> i<Space><esc>
 nnoremap <leader><Tab> i<Tab><esc><Right>
 nnoremap <leader><BS> i<BS><esc><Right>
 
-imap jj <esc>
-
+imap ff <esc>
+vmap ff <esc>
 
 "# Un-map
 :vnoremap U <nop>
@@ -105,22 +107,26 @@ imap jj <esc>
 set nohlsearch
 
 "# Find
-map <leader>ff /for .* in .*:<CR>
-map <leader>fF ?for .* in .*:<CR>
+map <leader>mf /for .* in .*:<CR>
+map <leader>mF ?for .* in .*:<CR>
 
-map <leader>fC ?class .*:<CR>
-map <leader>fc /class .*:<CR>
+map <leader>mC ?class .*:<CR>
+map <leader>mc /class .*:<CR>
 
-map <leader>fm /def .*(self\\|cls).*:<CR>
-map <leader>fM ?def .*(self\\|cls).*:<CR>
+map <leader>mm /def .*(self\\|cls).*:<CR>
+map <leader>mM ?def .*(self\\|cls).*:<CR>
 
-map <leader>fi /if.*:<CR>
-map <leader>fI ?if.*:<CR>
+map <leader>mi /if.*:<CR>
+map <leader>mI ?if.*:<CR>
+
+
+"# Select all
+map <C-a> ggvG<C-c><C-o><C-o>gv
 
 "# Move
 map <leader>mh ^
 map <leader>me $
-"map <leader>mb %
+" map <leader>mb
 omap b (
 
 nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
@@ -129,6 +135,7 @@ function! AutoHighlightToggle()
 	if exists('#auto_highlight')
 		set nohlsearch
 		au! auto_highlight
+
 		augroup! auto_highlight
 		setl updatetime=500
 		echo 'Highlight current word: off'

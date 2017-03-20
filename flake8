@@ -1,0 +1,34 @@
+[flake8]
+
+max-line-length = 80
+
+ignore =
+	# continuation line
+	E122,
+
+	# multiple spaces before keyword
+	E272,
+
+	# line too long
+	E501,
+
+	# white space before ,
+	E202,
+
+	# white space before :
+	E203,
+
+	# multi space before operator
+	E221,
+
+	# unexpected spaces around =
+	E251,
+
+	# block comment should start with '# '
+	E265,
+
+	# inline comment should start with '# '
+	E262,
+
+	#the backslash is redundant between brackets
+	E502

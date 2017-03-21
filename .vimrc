@@ -66,7 +66,6 @@ nnoremap D "_D
 nnoremap x "_x
 vnoremap x "_x
 imap <C-d> <esc>ddi
-nmap <C-d> dd
 
 "# Split line
 nnoremap <leader>s, f,wi<Return><esc>

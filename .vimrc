@@ -3,8 +3,10 @@
 "##############################################################################
 iabbrev ms mysterySign
 iabbrev gs g2sSettings
-iabbrev main: if __name__ == '__main__':
-
+iabbrev main@@ if __name__ == '__main__':
+iabbrev init@@ def<Space>__init__(self):
+iabbrev call@@ def <Space>__call__(self):
+iabbrev try@@ try:<Return>pass<Return>excep<Space>Exception<Space>as<Space>e:<Return>pass
 "##############################################################################
 " User setting
 "##############################################################################
@@ -84,11 +86,20 @@ nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
+"# Arrow
+nnoremap j k
+nnoremap k j
+
+
 "# Move line
 nnoremap <silent> <C-Up> :m-2<CR>zz
 vnoremap <silent> <C-Up> :m '<-2<CR>gvzz
 nnoremap <silent> <C-Down> :m+1<CR>zz
 vnoremap <silent> <C-Down> :m '>+1<CR>gvzz
+nnoremap <silent> <C-k> :m-2<CR>zz
+vnoremap <silent> <C-k> :m '<-2<CR>gvzz
+nnoremap <silent> <C-j> :m+1<CR>zz
+vnoremap <silent> <C-j> :m '>+1<CR>gvzz
 
 "# Return and BS and esc
 nnoremap <leader><Return> I<Return><esc>
@@ -100,7 +111,9 @@ imap ff <esc>
 vmap ff <esc>
 
 "# Un-map
-:vnoremap U <nop>
+vnoremap U <nop>
+nnoremap Q <nop>
+
 
 "# Highlight selected word
 set nohlsearch
@@ -125,6 +138,9 @@ map <C-a> ggvG<C-c><C-o><C-o>gv
 "# Move
 map <leader>mh ^
 map <leader>me $
+map <leader>mw *
+map <leader>mW #
+map <leader>mb %
 " map <leader>mb
 omap b (
 

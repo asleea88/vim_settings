@@ -3,10 +3,26 @@
 "##############################################################################
 iabbrev ms mysterySign
 iabbrev gs g2sSettings
+iabbrev gh g2sHost
+iabbrev ge g2sEgm
+ia if@@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
+ia if2@@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
+
 iabbrev main@@ if __name__ == '__main__':
-iabbrev init@@ def<Space>__init__(self):
-iabbrev call@@ def <Space>__call__(self):
+iabbrev init@@ def<Space>__init__(self):<esc>b
+iabbrev call@@ def <Space>__call__(self):<esc>b
 iabbrev try@@ try:<Return>pass<Return>excep<Space>Exception<Space>as<Space>e:<Return>pass
+
+map <F4> :call Sc()
+
+function Sc(...)
+	if a:0 < 2
+		execute ":iunabbrev " . a:1
+	else
+		execute ":iabbrev " . a:1 . " " . a:2
+	endif
+endfunction
+
 "##############################################################################
 " User setting
 "##############################################################################
@@ -21,24 +37,30 @@ set ma
 set nowrap
 set mouse=a
 set nu
-set completeopt=menu
+" set completeopt=menu
+set completeopt-=preview
 set pastetoggle=<F3>
+set ic
 
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
 "# Switch windows
-nnoremap <C-W>/ <C-W><C-J>
-nnoremap <C-W>[ <C-W><C-K>
-nnoremap <C-W>' <C-W><C-L>
-nnoremap <C-W>; <C-W><C-H>
+" nnoremap <C-W>k <C-W><C-J>
+" nnoremap <C-W>j <C-W><C-K>
+" nnoremap <C-W>l <C-W><C-L>
+" nnoremap <C-W>h <C-W><C-H>
 
-"# quotes
+"# Wrap word
 nnoremap <leader>W' ciW'<C-R>"'<esc>
 nnoremap <leader>W" ciW"<C-R>""<esc>
 nnoremap <leader>w' ciw'<C-R>"'<esc>
 nnoremap <leader>w" ciw"<C-R>""<esc>
+nnoremap <leader>wb ciw(<C-R>")<esc>
+nnoremap <leader>Wb ciW(<C-R>")<esc>
+nnoremap <leader>wB ciw{<C-R>"}<esc>
+nnoremap <leader>WB ciW{<C-R>"}<esc>
 
 "# Annotation
 autocmd FileType python map <leader>/ :call ToggleAnno("#")<CR>
@@ -87,9 +109,12 @@ vnoremap > >gv
 vnoremap < <gv
 
 "# Arrow
-nnoremap j k
-nnoremap k j
-
+" nnoremap k j
+" nnoremap j k
+" vnoremap j k
+" vnoremap k j
+" onoremap j k
+" onoremap k j
 
 "# Move line
 nnoremap <silent> <C-Up> :m-2<CR>zz
@@ -114,10 +139,6 @@ vmap ff <esc>
 vnoremap U <nop>
 nnoremap Q <nop>
 
-
-"# Highlight selected word
-set nohlsearch
-
 "# Find
 map <leader>mf /for .* in .*:<CR>
 map <leader>mF ?for .* in .*:<CR>
@@ -140,9 +161,16 @@ map <leader>mh ^
 map <leader>me $
 map <leader>mw *
 map <leader>mW #
-map <leader>mb %
+map <leader>mb f(
+map <leader>mB F(
 " map <leader>mb
 omap b (
+
+"# Python
+nnoremap <buffer> <F9> :!clear;python %<CR>
+
+"# Highlight selected word
+set nohlsearch
 
 nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 function! AutoHighlightToggle()
@@ -272,6 +300,7 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Valloric/YouCompleteMe'
 nnoremap <leader>md :YcmCompleter GoTo<CR>
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
+let g:ycm_auto_trigger = 0
 
 "# Nevigate indentation
 Plugin 'jeetsukumaran/vim-indentwise'

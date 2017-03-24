@@ -1,17 +1,20 @@
 "##############################################################################
 " Temp
 "##############################################################################
-iabbrev ms mysterySign
-iabbrev gs g2sSettings
-iabbrev gh g2sHost
-iabbrev ge g2sEgm
-ia if@@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
-ia if2@@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
+ia ms mysterySign
+ia gs g2sSettings
+ia gh g2sHost
+ia ge g2sEgm
 
-iabbrev main@@ if __name__ == '__main__':
-iabbrev init@@ def<Space>__init__(self):<esc>b
-iabbrev call@@ def <Space>__call__(self):<esc>b
-iabbrev try@@ try:<Return>pass<Return>excep<Space>Exception<Space>as<Space>e:<Return>pass
+ia if@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
+ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
+
+ia main@ if __name__ == '__main__':
+ia init@ def<Space>__init__(self):<esc>b
+ia call@ def <Space>__call__(self):<esc>b
+ia try@ try:<Return>pass<Return>except<Space>Exception<Space>as<Space>e:<Return>self.logger.exception(e)<esc>?pass<CR>
+
+ia class@ class Class(object):<Return><Return>def __init__(self):<Return>pass<esc>?Class<CR>
 
 map <F4> :call Sc()
 

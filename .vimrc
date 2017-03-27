@@ -65,6 +65,10 @@ nnoremap <leader>Wb ciW(<C-R>")<esc>
 nnoremap <leader>wB ciw{<C-R>"}<esc>
 nnoremap <leader>WB ciW{<C-R>"}<esc>
 
+"# Refresh
+map <F5> :edit!<CR>
+imap <F5> <esc>:edit!<CR>
+
 "# Annotation
 autocmd FileType python map <leader>/ :call ToggleAnno("#")<CR>
 autocmd BufRead,BufNewFile .vimrc map <leader>/ :call ToggleAnno("\"")<CR>
@@ -285,7 +289,7 @@ if has('gui_running')
 else
     colorscheme zenburn
 endif
-call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
 
 "# File Browsing
 Plugin 'scrooloose/nerdtree'

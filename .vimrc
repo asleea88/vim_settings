@@ -37,6 +37,7 @@ set showmatch
 set splitbelow
 set splitright
 set ma
+" set smartindent
 set nowrap
 set mouse=a
 set nu
@@ -89,7 +90,7 @@ function ToggleAnno(mark)
 endfunction
 
 "# Trace
-map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
+map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
 
 "# Delete
 nnoremap d "_d
@@ -104,8 +105,8 @@ nnoremap <leader>sb %cib<Return><C-r>"<C-t><Return><esc>
 nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
 
 "# Save
-nnoremap <F2> :w<CR>
-inoremap <F2> <esc>:w<CR>
+nnoremap <silent> <F2> :w<CR>
+inoremap <silent> <F2> <esc>:w<CR>
 
 map QQ :q!<CR>
 
@@ -159,6 +160,8 @@ map <leader>mM ?def .*(self\\|cls).*:<CR>
 map <leader>mi /if.*:<CR>
 map <leader>mI ?if.*:<CR>
 
+"# xml
+vmap <leader>xmli :!xmllint --format -<CR>
 
 "# Select all
 map <C-a> ggvG<C-c><C-o><C-o>gv

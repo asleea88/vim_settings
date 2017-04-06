@@ -185,7 +185,9 @@ map <leader>mI ?if.*:<CR>
 " command! -range -nargs=0 -bar JsonTool <line1>,<line2>!python -m json.tool
 
 "# xml
-vmap <leader>xmli :!xmllint --format -<CR>
+vmap <leader>ppx :!xmllint --format -<CR>
+vmap <leader>ppj :%!python -m json.tool<CR>
+
 
 "# Select all
 map <C-a> ggvG<C-c><C-o><C-o>gv

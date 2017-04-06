@@ -53,6 +53,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+"# Tmux
+set term=screen-256color
+
 "# Switch windows
 " nnoremap <C-W>k <C-W><C-J>
 " nnoremap <C-W>j <C-W><C-K>

@@ -16,15 +16,18 @@ ia try@ try:<Return>pass<Return>except<Space>Exception<Space>as<Space>e:<Return>
 
 ia class@ class Class(object):<Return><Return>def __init__(self):<Return>pass<esc>?Class<CR>
 
-map <F4> :call Sc()
+"##############################################################################
+" AWS
+"##############################################################################
+ia apsmib@ 13.124.89.161
+ia apcomms@ 13.124.84.137
+ia apapp@ 13.124.35.9
+ia apgame@ 13.124.54.116
 
-function Sc(...)
-	if a:0 < 2
-		execute ":iunabbrev " . a:1
-	else
-		execute ":iabbrev " . a:1 . " " . a:2
-	endif
-endfunction
+ia atsmib@ 13.124.115.209
+ia atcomms@ 52.78.186.216
+ia atapp@ 52.78.153.13
+ia atgame@ 13.124.111.51
 
 "##############################################################################
 " User setting
@@ -92,6 +95,17 @@ endfunction
 "# Trace
 map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
 
+"# iabbrev
+map <F4> :call Sc()
+
+function Sc(...)
+	if a:0 < 2
+		execute ":iunabbrev " . a:1
+	else
+		execute ":iabbrev " . a:1 . " " . a:2
+	endif
+endfunction
+
 "# Delete
 nnoremap d "_d
 nnoremap D "_D
@@ -140,6 +154,10 @@ nnoremap <leader><Space> i<Space><esc>
 nnoremap <leader><Tab> i<Tab><esc><Right>
 nnoremap <leader><BS> i<BS><esc><Right>
 
+"# Append
+nnoremap <leader>a, :normal $a,<esc>
+vnoremap <leader>a, :normal $a,<esc>
+
 imap ff <esc>
 vmap ff <esc>
 
@@ -160,6 +178,9 @@ map <leader>mM ?def .*(self\\|cls).*:<CR>
 map <leader>mi /if.*:<CR>
 map <leader>mI ?if.*:<CR>
 
+"# json
+" command! -range -nargs=0 -bar JsonTool <line1>,<line2>!python -m json.tool
+
 "# xml
 vmap <leader>xmli :!xmllint --format -<CR>
 
@@ -174,7 +195,7 @@ map <leader>mW #
 map <leader>mb f(
 map <leader>mB F(
 " map <leader>mb
-omap b (
+" omap b (
 
 "# Python
 nnoremap <buffer> <F9> :!clear;python %<CR>

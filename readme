@@ -1,8 +1,5 @@
-# Install Vundle
-- git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
 # Create symbolic link
-ln -s ./.vimrc ~/.vimrc
-ln -s ./.tmux_conf ~/.tmux_conf
+ln -sf ./.vimrc ~/.vimrc
+ln -sf ./.tmux_conf ~/.tmux.conf
 
 

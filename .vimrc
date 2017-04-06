@@ -34,7 +34,7 @@ ia atgame@ 13.124.111.51
 "##############################################################################
 let mapleader = "\<Space>"
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 set cursorline
 set showmatch
 set splitbelow

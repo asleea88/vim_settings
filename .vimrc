@@ -95,6 +95,19 @@ function ToggleAnno(mark)
 	endif
 endfunction
 
+"# Boolean toggle
+autocmd FileType python nnoremap <leader>tb :call ToggleBoolean()<CR>
+function ToggleBoolean()
+	execute "normal! \"zyiw"
+	if @z ==# "True"
+		execute "normal ciwFalse\<esc>"
+	elseif @z ==# "False"
+		execute "normal ciwTrue\<esc>"
+	else
+		execute "echo \"Wrong boolean string\""
+	endif
+endfunction
+
 "# Trace
 map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
 

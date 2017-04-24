@@ -9,12 +9,13 @@ ia ge g2sEgm
 ia if@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
 ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
 
-ia main@ if __name__ == '__main__':
+ia main@ if __name__ == '__main__':<CR>
 ia init@ def<Space>__init__(self):<esc>b
 ia call@ def <Space>__call__(self):<esc>b
 ia try@ try:<Return>pass<Return>except<Space>Exception<Space>as<Space>e:<Return>self.logger.exception(e)<esc>?pass<CR>
 
 ia class@ class Class(object):<Return><Return>def __init__(self):<Return>pass<esc>?Class<CR>
+ia dir@ os.path.dirname(__file__)
 
 "##############################################################################
 " AWS
@@ -71,6 +72,14 @@ nnoremap <leader>wb ciw(<C-R>")<esc>
 nnoremap <leader>Wb ciW(<C-R>")<esc>
 nnoremap <leader>wB ciw{<C-R>"}<esc>
 nnoremap <leader>WB ciW{<C-R>"}<esc>
+
+vnoremap <leader>w' c'<C-R>"'<esc>
+vnoremap <leader>w" c"<C-R>""<esc>
+vnoremap <leader>wb c(<C-R>")<esc>
+vnoremap <leader>wB c{<C-R>"}<esc>
+
+"# Capital
+
 
 "# Refresh
 map <F5> :edit!<CR>
@@ -174,8 +183,7 @@ nnoremap <leader><BS> i<BS><esc><Right>
 nnoremap <leader>a, :normal $a,<esc>
 vnoremap <leader>a, :normal $a,<esc>
 
-imap ff <esc>
-vmap ff <esc>
+imap df <esc>
 
 "# Un-map
 vnoremap U <nop>
@@ -194,10 +202,8 @@ map <leader>mM ?def .*(self\\|cls).*:<CR>
 map <leader>mi /if.*:<CR>
 map <leader>mI ?if.*:<CR>
 
-"# json
-" command! -range -nargs=0 -bar JsonTool <line1>,<line2>!python -m json.tool
 
-"# xml
+"# pretty print
 vmap <leader>ppx :!xmllint --format -<CR>
 vmap <leader>ppj :%!python -m json.tool<CR>
 
@@ -375,14 +381,3 @@ Plugin 'dkprice/vim-easygrep'
 
 "# Auto Pairs
 Plugin 'jiangmiao/auto-pairs'
-
-
-"function Test1(name)
-"	echom a:name
-"endfunction
-"
-"function Test2(...)
-"	echom a:0
-"	echom a:1
-"	echo a:000
-"endfunction

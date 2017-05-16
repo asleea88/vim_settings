@@ -119,6 +119,7 @@ endfunction
 
 "# Trace
 map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
+map <silent> <leader>B oimport g2sHost.g2sUtility.ForkPdb; ForkedPdb().set_trace()<esc>
 
 "# iabbrev
 map <F4> :call Sc()
@@ -184,6 +185,7 @@ nnoremap <leader>a, :normal $a,<esc>
 vnoremap <leader>a, :normal $a,<esc>
 
 imap df <esc>
+vmap df <esc>
 
 "# Un-map
 vnoremap U <nop>

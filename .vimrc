@@ -76,7 +76,8 @@ nnoremap <leader>WB ciW{<C-R>"}<esc>
 vnoremap <leader>w' c'<C-R>"'<esc>
 vnoremap <leader>w" c"<C-R>""<esc>
 vnoremap <leader>wb c(<C-R>")<esc>
-vnoremap <leader>wB c{<C-R>"}<esc>
+vnoremap <leader>wd c{<C-R>"}<esc>
+vnoremap <leader>wl c[<C-R>"]<esc>
 
 "# Capital
 

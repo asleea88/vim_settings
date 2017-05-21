@@ -1,5 +1,10 @@
 # Create symbolic link
-ln -sf ./.vimrc ~/.vimrc
-ln -sf ./.tmux_conf ~/.tmux.conf
+$ ln -sf ./.vimrc ~/.vimrc
+$ ln -sf ./.tmux_conf ~/.tmux.conf
+
+# Install YouCompeteMe
+$ sudo apt-get install build-essential cmake
+$ cd ~/.vim/bundle/YouCompleteMe
+$ ./install.py --clang-completer
 
 

@@ -88,18 +88,23 @@ imap <F5> <esc>:edit!<CR>
 
 "# Annotation
 autocmd FileType python map <leader>/ :call ToggleAnno("#")<CR>
+autocmd FileType c map <leader>/ :call ToggleAnno("//")<CR>
+autocmd FileType cpp map <leader>/ :call ToggleAnno("//")<CR>
 autocmd BufRead,BufNewFile .vimrc map <leader>/ :call ToggleAnno("\"")<CR>
 
 function ToggleAnno(mark)
 	execute "normal! ^"
-	let curChar  = getline('.')[col('.')-1]
-	let curChar2 = getline('.')[col('.')]
+	let markLen = strlen(a:mark)
+	let curChar  = getline('.')[col('.')-1:col('.')-2+markLen]
+	let curChar2 = getline('.')[col('.')-1+markLen]
+
 	if curChar ==# a:mark
 		if curChar2 ==# "\<Space>"
-			execute "normal! 2x"
-		else
-			execute "normal! x"
+			let markLen = markLen + 1
 		endif
+
+		execute "normal! " . markLen . "x"
+
 	else
 		execute "normal! i" . a:mark . "\<Space>"
 	endif
@@ -184,6 +189,8 @@ nnoremap <leader><BS> i<BS><esc><Right>
 "# Append
 nnoremap <leader>a, :normal $a,<esc>
 vnoremap <leader>a, :normal $a,<esc>
+vnoremap <leader>a; :normal $a;<esc>
+vnoremap <leader>a; :normal $a;<esc>
 
 imap df <esc>
 vmap df <esc>
@@ -353,11 +360,13 @@ Plugin 'kien/ctrlp.vim'
 
 "# Power Line
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+set laststatus=2
 
 "# Auto-Complete
 Plugin 'Valloric/YouCompleteMe'
 nnoremap <leader>md :YcmCompleter GoTo<CR>
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_auto_trigger = 0
 
 "# Nevigate indentation

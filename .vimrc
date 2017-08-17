@@ -50,18 +50,11 @@ set completeopt-=preview
 set pastetoggle=<F3>
 set ic
 
-set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
 "# Tmux
 set term=screen-256color
-
-"# Switch windows
-" nnoremap <C-W>k <C-W><C-J>
-" nnoremap <C-W>j <C-W><C-K>
-" nnoremap <C-W>l <C-W><C-L>
-" nnoremap <C-W>h <C-W><C-H>
 
 "# Wrap word
 nnoremap <leader>W' ciW'<C-R>"'<esc>
@@ -78,6 +71,8 @@ vnoremap <leader>w" c"<C-R>""<esc>
 vnoremap <leader>wb c(<C-R>")<esc>
 vnoremap <leader>wd c{<C-R>"}<esc>
 vnoremap <leader>wl c[<C-R>"]<esc>
+
+"# Cpp header
 
 "# Capital
 
@@ -143,7 +138,6 @@ nnoremap d "_d
 nnoremap D "_D
 nnoremap x "_x
 vnoremap x "_x
-imap <C-d> <esc>ddi
 
 "# Split line
 nnoremap <leader>s, f,wi<Return><esc>
@@ -162,29 +156,19 @@ nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
-"# Arrow
-" nnoremap k j
-" nnoremap j k
-" vnoremap j k
-" vnoremap k j
-" onoremap j k
-" onoremap k j
-
 "# Move line
-nnoremap <silent> <C-Up> :m-2<CR>zz
+" nnoremap <silent> <C-Up> :m-2<CR>zz
 vnoremap <silent> <C-Up> :m '<-2<CR>gvzz
-nnoremap <silent> <C-Down> :m+1<CR>zz
+" nnoremap <silent> <C-Down> :m+1<CR>zz
 vnoremap <silent> <C-Down> :m '>+1<CR>gvzz
-nnoremap <silent> <C-k> :m-2<CR>zz
+" nnoremap <silent> <C-k> :m-2<CR>zz
 vnoremap <silent> <C-k> :m '<-2<CR>gvzz
-nnoremap <silent> <C-j> :m+1<CR>zz
+" nnoremap <silent> <C-j> :m+1<CR>zz
 vnoremap <silent> <C-j> :m '>+1<CR>gvzz
 
 "# Return and BS and esc
 nnoremap <leader><Return> I<Return><esc>
 nnoremap <leader><Space> i<Space><esc>
-nnoremap <leader><Tab> i<Tab><esc><Right>
-nnoremap <leader><BS> i<BS><esc><Right>
 
 "# Append
 nnoremap <leader>a, :normal $a,<esc>
@@ -267,28 +251,38 @@ autocmd BufWritePre * %s/\s\+$//e
 
 
 "##############################################################################
-" *.py
+" autocommand *.py
 "##############################################################################
-au BufNewFile,BufRead *.py
-    \set tabstop=4
-    \set softtabstop=4
-    \set shiftwidth=4
-    \set textwidth=79
-    \set expandtab
-    \set autoindent
-    \set fileformat=unix
+" augroup group_python
+	" au Filetype *.py
+	" \ set tabstop=4
+	" \ set softtabstop=4
+	" \ set shiftwidth=4
+	" \ set textwidth=79
+	" \ set expandtab
+	" \ set autoindent
+	" \ set fileformat=unix
+" augroup END
 
-"highlight BadWhitespace ctermbg=red guibg=red
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-"au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+"##############################################################################
+" autocommand *.cpp
+"##############################################################################
+" au BufNewFile,BufRead *.cpp set tabstop=4
+
+augroup group_cpp
+    au!
+    au BufNewFile,BufRead  *.cpp set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cindent
+    au BufNewFile,BufRead  *.h set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cindent
+augroup END
 
 
+"##############################################################################
+" autocommand *.test
+"##############################################################################
 
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
+augroup group_test
+    au Filetype *.test set tabstop=4
+augroup END
 
 "##############################################################################
 " Vundle init
@@ -365,8 +359,10 @@ set laststatus=2
 "# Auto-Complete
 Plugin 'Valloric/YouCompleteMe'
 nnoremap <leader>md :YcmCompleter GoTo<CR>
-nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+" let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
+nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_trigger = 0
 
 "# Nevigate indentation

@@ -149,6 +149,7 @@ nnoremap <silent> <F2> :w<CR>
 inoremap <silent> <F2> <esc>:w<CR>
 
 map QQ :q!<CR>
+map qq :q<CR>
 
 "# Tab
 nnoremap > >>
@@ -173,7 +174,7 @@ nnoremap <leader><Space> i<Space><esc>
 "# Append
 nnoremap <leader>a, :normal $a,<esc>
 vnoremap <leader>a, :normal $a,<esc>
-vnoremap <leader>a; :normal $a;<esc>
+nnoremap <leader>a; :normal $a;<esc>
 vnoremap <leader>a; :normal $a;<esc>
 
 imap df <esc>
@@ -361,6 +362,7 @@ Plugin 'Valloric/YouCompleteMe'
 nnoremap <leader>md :YcmCompleter GoTo<CR>
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
+" let g:ycm_server_python_interpreter = '/usr/bin/python3'
 " let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_trigger = 0

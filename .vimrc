@@ -1,6 +1,9 @@
 "##############################################################################
 " Temp
 "##############################################################################
+
+:imap ;; <C-O>/%%%<CR><C-O>c3l
+
 ia ms mysterySign
 ia gs g2sSettings
 ia gh g2sHost
@@ -9,13 +12,15 @@ ia ge g2sEgm
 ia if@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
 ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
 
-ia main@ if __name__ == '__main__':<CR>
-ia init@ def<Space>__init__(self):<esc>b
-ia call@ def <Space>__call__(self):<esc>b
-ia try@ try:<Return>pass<Return>except<Space>Exception<Space>as<Space>e:<Return>self.logger.exception(e)<esc>?pass<CR>
+" ia @@init def<Space>__init__(self):<esc>b
+" ia @@try try:<Return>pass<Return>except<Space>Exception<Space>as<Space>e:<Return>self.logger.exception(e)<esc>?pass<CR>
 
-ia class@ class Class(object):<Return><Return>def __init__(self):<Return>pass<esc>?Class<CR>
-ia dir@ os.path.dirname(__file__)
+" ia @@class class Class(object):<Return><Return>def __init__(self):<Return>pass<esc>?Class<CR>
+" ia dir@ os.path.dirname(__file__)
+
+imap <buffer> @@ma if __name__ == '__main__':<CR>
+imap <buffer> @@tc <C-O>mzclass Test%%%(unittest.TestCase):<CR><CR>def setUp(self):<CR>pass<CR><CR>def tearDown(self):<CR>pass<C-O>'z;;
+imap <buffer> @@ex <C-O>mztry:<CR>pass<CR>except %%%:<CR>pass<C-O>'z;;
 
 "##############################################################################
 " AWS
@@ -217,7 +222,24 @@ map <leader>mB F(
 " omap b (
 
 "# Python
-nnoremap <buffer> <F9> :!clear;python %<CR>
+nnoremap <buffer> <F8> :!clear;python %<CR>
+nnoremap <buffer> <F9> :!clear;python3 %<CR>
+
+function Py2()
+  let g:syntastic_python_python_exec = '/usr/bin/python'
+  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
+endfunction
+
+function Py3()
+  let g:syntastic_python_python_exec = '/usr/bin/python3'
+  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3'
+endfunction
+
+call Py2()
+
+nnoremap <leader>ip2 :call Py2()<CR>
+nnoremap <leader>ip3 :call Py3()<CR>
+
 
 "# Highlight selected word
 set nohlsearch
@@ -320,17 +342,20 @@ Plugin 'vim-scripts/indentpython.vim'
 "# Syntax Checking/Highlighting
 Plugin 'scrooloose/syntastic'
 let python_highlight_all=1
+let g:syntastic_python_checkers = ['flake8']
 syntax on
 
 "# PEP8 Checking
-Plugin 'nvie/vim-flake8'
-let g:flake8_error_marker='EE'     " set error marker to 'EE'
-let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
-let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
-let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
-let g:flake8_naming_marker=''      " disable naming warnings
-let g:flake8_quickfix_height=7
-let g:flake8_show_quickfix=1
+" Plugin 'nvie/vim-flake8'
+" let g:flake8_error_marker='EE'     " set error marker to 'EE'
+" let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
+" let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
+" let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
+" let g:flake8_naming_marker=''      " disable naming warnings
+" let g:flake8_quickfix_height=7
+" let g:flake8_show_quickfix=1
+" let g:flake8_show_in_file=1
+" let g:flake8_show_in_gutter=1
 
 
 "# Color Schema

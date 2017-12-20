@@ -8,6 +8,11 @@ $ cd ~/.vim/bundle/YouCompleteMe
 $ ./install.py --clang-completer
 
 # Flake8
+$ pip3 install flake8l
+$ cd /usr/local/bin
+$ mv flake8 flake8-py3
+$ pip install flake8
+
 ~/.config/flake8
 
 

@@ -4,11 +4,6 @@
 
 :imap ;; <C-O>/%%%<CR><C-O>c3l
 
-ia ms mysterySign
-ia gs g2sSettings
-ia gh g2sHost
-ia ge g2sEgm
-
 ia if@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
 ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
 
@@ -21,6 +16,13 @@ ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>p
 imap <buffer> @@ma if __name__ == '__main__':<CR>
 imap <buffer> @@tc <C-O>mzclass Test%%%(unittest.TestCase):<CR><CR>def setUp(self):<CR>pass<CR><CR>def tearDown(self):<CR>pass<C-O>'z;;
 imap <buffer> @@ex <C-O>mztry:<CR>pass<CR>except %%%:<CR>pass<C-O>'z;;
+
+
+"# 2to3
+nnoremap <leader>tl df($F)x
+
+"# django foreignkey
+nnoremap <leader>td f)i, on_delete=models.CASCADE<ESC>
 
 "##############################################################################
 " AWS
@@ -82,6 +84,10 @@ vnoremap <leader>wl c[<C-R>"]<esc>
 "# Capital
 
 
+"# grep
+:command! -nargs=1 Pg vimgrep <args> **/*.py
+
+
 "# Refresh
 map <F5> :edit!<CR>
 imap <F5> <esc>:edit!<CR>
@@ -92,8 +98,8 @@ autocmd FileType c map <leader>/ :call ToggleAnno("//")<CR>
 autocmd FileType cpp map <leader>/ :call ToggleAnno("//")<CR>
 autocmd BufRead,BufNewFile .vimrc map <leader>/ :call ToggleAnno("\"")<CR>
 
-function ToggleAnno(mark)
-	execute "normal! ^"
+function! ToggleAnno(mark)
+	execute "normal! 0"
 	let markLen = strlen(a:mark)
 	let curChar  = getline('.')[col('.')-1:col('.')-2+markLen]
 	let curChar2 = getline('.')[col('.')-1+markLen]
@@ -112,7 +118,7 @@ endfunction
 
 "# Boolean toggle
 autocmd FileType python nnoremap <leader>tb :call ToggleBoolean()<CR>
-function ToggleBoolean()
+function! ToggleBoolean()
 	execute "normal! \"zyiw"
 	if @z ==# "True"
 		execute "normal ciwFalse\<esc>"
@@ -130,12 +136,12 @@ map <silent> <leader>B oimport g2sHost.g2sUtility.ForkPdb; ForkedPdb().set_trace
 "# iabbrev
 map <F4> :call Sc()
 
-function Sc(...)
-	if a:0 < 2
-		execute ":iunabbrev " . a:1
-	else
-		execute ":iabbrev " . a:1 . " " . a:2
-	endif
+function! Sc(...)
+    if a:0 < 2
+	execute ":iunabbrev " . a:1
+    else
+	execute ":iabbrev " . a:1 . " " . a:2
+    endif
 endfunction
 
 "# Delete
@@ -143,6 +149,9 @@ nnoremap d "_d
 nnoremap D "_D
 nnoremap x "_x
 vnoremap x "_x
+
+"# Reflesh .vimrc
+nnoremap <F5> :source ~/.vimrc<CR>
 
 "# Split line
 nnoremap <leader>s, f,wi<Return><esc>
@@ -225,17 +234,17 @@ map <leader>mB F(
 nnoremap <buffer> <F8> :!clear;python %<CR>
 nnoremap <buffer> <F9> :!clear;python3 %<CR>
 
-function Py2()
+function! Py2()
   let g:syntastic_python_python_exec = '/usr/bin/python'
   let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
 endfunction
 
-function Py3()
+function! Py3()
   let g:syntastic_python_python_exec = '/usr/bin/python3'
   let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3'
 endfunction
 
-call Py2()
+call Py3()
 
 nnoremap <leader>ip2 :call Py2()<CR>
 nnoremap <leader>ip3 :call Py3()<CR>
@@ -373,7 +382,7 @@ endif
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-:command NE NERDTree
+:command! NE NERDTree
 
 "# Super Searching
 Plugin 'kien/ctrlp.vim'
@@ -390,7 +399,7 @@ let g:ycm_confirm_extra_conf = 0
 " let g:ycm_server_python_interpreter = '/usr/bin/python3'
 " let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
-let g:ycm_auto_trigger = 0
+let g:ycm_auto_trigger = 1
 
 "# Nevigate indentation
 Plugin 'jeetsukumaran/vim-indentwise'
@@ -412,7 +421,7 @@ map <leader>[ <Plug>(IndentWisePreviousEqualIndent)
 Plugin 'terryma/vim-multiple-cursors'
 
 "# Esay grep
-Plugin 'dkprice/vim-easygrep'
+" Plugin 'dkprice/vim-easygrep'
 
 "# Auto Pairs
 Plugin 'jiangmiao/auto-pairs'

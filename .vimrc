@@ -2,7 +2,7 @@
 " Temp
 "##############################################################################
 
-:imap ;; <C-O>/%%%<CR><C-O>c3l
+:nnoremap <leader>t /%%%<CR><C-O>c3l
 
 ia if@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
 ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
@@ -18,12 +18,6 @@ imap <buffer> @@tc <C-O>mzclass Test%%%(unittest.TestCase):<CR><CR>def setUp(sel
 imap <buffer> @@ex <C-O>mztry:<CR>pass<CR>except %%%:<CR>pass<C-O>'z;;
 
 
-"# 2to3
-nnoremap <leader>tl df($F)x
-
-"# django foreignkey
-nnoremap <leader>td f)i, on_delete=models.CASCADE<ESC>
-
 "##############################################################################
 " AWS
 "##############################################################################
@@ -37,6 +31,7 @@ ia atcomms@ 52.78.186.216
 ia atapp@ 52.78.153.13
 ia atgame@ 13.124.111.51
 
+
 "##############################################################################
 " User setting
 "##############################################################################
@@ -48,10 +43,14 @@ set showmatch
 set splitbelow
 set splitright
 set ma
+
+
 " set smartindent
 set nowrap
 set mouse=a
 set nu
+
+
 " set completeopt=menu
 set completeopt-=preview
 set pastetoggle=<F3>
@@ -60,28 +59,9 @@ set ic
 set softtabstop=4
 set shiftwidth=4
 
+
 "# Tmux
 set term=screen-256color
-
-"# Wrap word
-nnoremap <leader>W' ciW'<C-R>"'<esc>
-nnoremap <leader>W" ciW"<C-R>""<esc>
-nnoremap <leader>w' ciw'<C-R>"'<esc>
-nnoremap <leader>w" ciw"<C-R>""<esc>
-nnoremap <leader>wb ciw(<C-R>")<esc>
-nnoremap <leader>Wb ciW(<C-R>")<esc>
-nnoremap <leader>wB ciw{<C-R>"}<esc>
-nnoremap <leader>WB ciW{<C-R>"}<esc>
-
-vnoremap <leader>w' c'<C-R>"'<esc>
-vnoremap <leader>w" c"<C-R>""<esc>
-vnoremap <leader>wb c(<C-R>")<esc>
-vnoremap <leader>wd c{<C-R>"}<esc>
-vnoremap <leader>wl c[<C-R>"]<esc>
-
-"# Cpp header
-
-"# Capital
 
 
 "# grep
@@ -91,6 +71,7 @@ vnoremap <leader>wl c[<C-R>"]<esc>
 "# Refresh
 map <F5> :edit!<CR>
 imap <F5> <esc>:edit!<CR>
+
 
 "# Annotation
 autocmd FileType python map <leader>/ :call ToggleAnno("#")<CR>
@@ -116,6 +97,7 @@ function! ToggleAnno(mark)
 	endif
 endfunction
 
+
 "# Boolean toggle
 autocmd FileType python nnoremap <leader>tb :call ToggleBoolean()<CR>
 function! ToggleBoolean()
@@ -129,9 +111,11 @@ function! ToggleBoolean()
 	endif
 endfunction
 
+
 "# Trace
 map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
 map <silent> <leader>B oimport g2sHost.g2sUtility.ForkPdb; ForkedPdb().set_trace()<esc>
+
 
 "# iabbrev
 map <F4> :call Sc()
@@ -144,19 +128,23 @@ function! Sc(...)
     endif
 endfunction
 
+
 "# Delete
 nnoremap d "_d
 nnoremap D "_D
 nnoremap x "_x
 vnoremap x "_x
 
+
 "# Reflesh .vimrc
 nnoremap <F5> :source ~/.vimrc<CR>
+
 
 "# Split line
 nnoremap <leader>s, f,wi<Return><esc>
 nnoremap <leader>sb %cib<Return><C-r>"<C-t><Return><esc>
 nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
+
 
 "# Save
 nnoremap <silent> <F2> :w<CR>
@@ -165,38 +153,65 @@ inoremap <silent> <F2> <esc>:w<CR>
 map QQ :q!<CR>
 map qq :q<CR>
 
+
 "# Tab
 nnoremap > >>
 nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
+
 "# Move line
-" nnoremap <silent> <C-Up> :m-2<CR>zz
+nnoremap <silent> <C-Up> :m-2<CR>zz
 vnoremap <silent> <C-Up> :m '<-2<CR>gvzz
-" nnoremap <silent> <C-Down> :m+1<CR>zz
+nnoremap <silent> <C-Down> :m+1<CR>zz
 vnoremap <silent> <C-Down> :m '>+1<CR>gvzz
-" nnoremap <silent> <C-k> :m-2<CR>zz
+nnoremap <silent> <C-k> :m-2<CR>zz
 vnoremap <silent> <C-k> :m '<-2<CR>gvzz
-" nnoremap <silent> <C-j> :m+1<CR>zz
+nnoremap <silent> <C-j> :m+1<CR>zz
 vnoremap <silent> <C-j> :m '>+1<CR>gvzz
+
 
 "# Return and BS and esc
 nnoremap <leader><Return> I<Return><esc>
 nnoremap <leader><Space> i<Space><esc>
 
-"# Append
+
+"# Append, Pop, Wrap
 nnoremap <leader>a, :normal $a,<esc>
 vnoremap <leader>a, :normal $a,<esc>
 nnoremap <leader>a; :normal $a;<esc>
 vnoremap <leader>a; :normal $a;<esc>
+vnoremap <leader>a= :normal $a=<esc>
+vnoremap<leader>a: :normal $a:<esc>
+
+nnoremap <leader>W' ciW'<C-R>"'<esc>
+nnoremap <leader>W" ciW"<C-R>""<esc>
+nnoremap <leader>w' ciw'<C-R>"'<esc>
+nnoremap <leader>w" ciw"<C-R>""<esc>
+nnoremap <leader>wb ciw(<C-R>")<esc>
+nnoremap <leader>Wb ciW(<C-R>")<esc>
+nnoremap <leader>wB ciw{<C-R>"}<esc>
+nnoremap <leader>WB ciW{<C-R>"}<esc>
+
+vnoremap <leader>w' c'<C-R>"'<esc>
+vnoremap <leader>w" c"<C-R>""<esc>
+vnoremap <leader>wb c(<C-R>")<esc>
+vnoremap <leader>wd c{<C-R>"}<esc>
+vnoremap <leader>wl c[<C-R>"]<esc>
+
+:command! -range -nargs=1 A <line1>,<line2>s/$/<args>/g
+:command! -range -nargs=1 P execute '<line1>,<line2>s/.\{' . <args> . '}$//g'
+:command! -range -nargs=1 W <line1>,<line2>s/^\|$/<args>/g
 
 imap df <esc>
 vmap df <esc>
 
+
 "# Un-map
 vnoremap U <nop>
 nnoremap Q <nop>
+
 
 "# Find
 map <leader>mf /for .* in .*:<CR>
@@ -220,6 +235,7 @@ vmap <leader>ppj :%!python -m json.tool<CR>
 "# Select all
 map <C-a> ggvG<C-c><C-o><C-o>gv
 
+
 "# Move
 map <leader>mh ^
 map <leader>me $
@@ -227,8 +243,10 @@ map <leader>mw *
 map <leader>mW #
 map <leader>mb f(
 map <leader>mB F(
-" map <leader>mb
-" omap b (
+
+nnoremap <leader>, :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+nnoremap <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+
 
 "# Python
 nnoremap <buffer> <F8> :!clear;python %<CR>
@@ -277,9 +295,21 @@ function! AutoHighlightToggle()
 endfunction
 
 
+"# Test
+function! T1()
+    execute "normal! 0itest\<esc>"
+endfunction
+function! T2() range
+    execute a:firstline . "," . a:lastline . "normal! 0itest\<esc>"
+endfunction
+
+vmap t1 :call T()<CR>
+vmap t2 :call T2()<CR>
+command! -range CT <line1>,<line2>call T1()
+
+
 "# White space
 autocmd BufWritePre * %s/\s\+$//e
-"nnoremap <leader>c :%s/\s\+$//e<CR>
 
 
 "##############################################################################

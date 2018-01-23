@@ -58,6 +58,8 @@ set ic
 
 set softtabstop=4
 set shiftwidth=4
+set expandtab
+set tabstop=4
 
 
 "# Tmux
@@ -75,6 +77,7 @@ imap <F5> <esc>:edit!<CR>
 
 "# Annotation
 autocmd FileType python map <leader>/ :call ToggleAnno("#")<CR>
+autocmd FileType yaml map <leader>/ :call ToggleAnno("#")<CR>
 autocmd FileType c map <leader>/ :call ToggleAnno("//")<CR>
 autocmd FileType cpp map <leader>/ :call ToggleAnno("//")<CR>
 autocmd BufRead,BufNewFile .vimrc map <leader>/ :call ToggleAnno("\"")<CR>
@@ -244,8 +247,8 @@ map <leader>mW #
 map <leader>mb f(
 map <leader>mB F(
 
-nnoremap <leader>, :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
-nnoremap <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+nnoremap <leader>, :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>zz
+nnoremap <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>zz
 
 
 "# Python
@@ -337,14 +340,11 @@ augroup group_cpp
     au BufNewFile,BufRead  *.h set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cindent
 augroup END
 
-
 "##############################################################################
-" autocommand *.test
+"
 "##############################################################################
 
-augroup group_test
-    au Filetype *.test set tabstop=4
-augroup END
+autocmd BufEnter *.rules :setlocal filetype=yaml
 
 "##############################################################################
 " Vundle init
@@ -384,19 +384,6 @@ let python_highlight_all=1
 let g:syntastic_python_checkers = ['flake8']
 syntax on
 
-"# PEP8 Checking
-" Plugin 'nvie/vim-flake8'
-" let g:flake8_error_marker='EE'     " set error marker to 'EE'
-" let g:flake8_warning_marker='WW'   " set warning marker to 'WW'
-" let g:flake8_pyflake_marker=''     " disable PyFlakes warnings
-" let g:flake8_complexity_marker=''  " disable McCabe complexity warnings
-" let g:flake8_naming_marker=''      " disable naming warnings
-" let g:flake8_quickfix_height=7
-" let g:flake8_show_quickfix=1
-" let g:flake8_show_in_file=1
-" let g:flake8_show_in_gutter=1
-
-
 "# Color Schema
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
@@ -414,7 +401,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 :command! NE NERDTree
 
-"# Super Searching
+"# Super Searching, <C-p>
 Plugin 'kien/ctrlp.vim'
 
 "# Power Line
@@ -431,27 +418,8 @@ let g:ycm_confirm_extra_conf = 0
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_trigger = 1
 
-"# Nevigate indentation
-Plugin 'jeetsukumaran/vim-indentwise'
-map <leader>] <Plug>(IndentWiseNextEqualIndent)
-map <leader>[ <Plug>(IndentWisePreviousEqualIndent)
-
-"map [- <Plug>(IndentWisePreviousLesserIndent)
-"map [= <Plug>(IndentWisePreviousEqualIndent)
-"map [+ <Plug>(IndentWisePreviousGreaterIndent)
-"map ]- <Plug>(IndentWiseNextLesserIndent)
-"map ]= <Plug>(IndentWiseNextEqualIndent)
-"map ]+ <Plug>(IndentWiseNextGreaterIndent)
-"map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
-"map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
-"map [% <Plug>(IndentWiseBlockScopeBoundaryBegin)
-"map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)
-
 "# Multiple Curosr
 Plugin 'terryma/vim-multiple-cursors'
-
-"# Esay grep
-" Plugin 'dkprice/vim-easygrep'
 
 "# Auto Pairs
 Plugin 'jiangmiao/auto-pairs'

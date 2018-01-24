@@ -423,3 +423,10 @@ Plugin 'terryma/vim-multiple-cursors'
 
 "# Auto Pairs
 Plugin 'jiangmiao/auto-pairs'
+
+"# Markdown Previewer
+Plugin 'JamshedVesuna/vim-markdown-preview'
+let vim_markdown_preview_hotkey='<leader>m'
+let vim_markdown_preview_github=1
+" let vim_markdown_preview_toggle=2
+let vim_markdown_preview_temp_file=1

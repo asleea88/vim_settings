@@ -1,13 +1,11 @@
 ### Create symbolic link
 ```
-$ ln -sf ./.vimrc ~/.vimrc
-$ ln -sf ./.tmux_conf ~/.tmux.conf
-$ ln -sf ./.flake8 ~/.config/flake8
+$ ./install_config.sh
 ```
 
 ### Install Vundel
 ```
-$ ./installVundle.sh
+$ ./install_vundle.sh
 ```
 
 

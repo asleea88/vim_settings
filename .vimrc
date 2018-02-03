@@ -4,8 +4,6 @@
 
 :nnoremap <leader>t /%%%<CR><C-O>c3l
 
-ia if@ if True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>w
-ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>pass<esc>:?if<CR>nw
 
 " ia @@init def<Space>__init__(self):<esc>b
 " ia @@try try:<Return>pass<Return>except<Space>Exception<Space>as<Space>e:<Return>self.logger.exception(e)<esc>?pass<CR>
@@ -13,9 +11,11 @@ ia if2@ if True:<Return>pass<Return>elif True:<Return>pass<Return>else:<Return>p
 " ia @@class class Class(object):<Return><Return>def __init__(self):<Return>pass<esc>?Class<CR>
 " ia dir@ os.path.dirname(__file__)
 
-imap <buffer> @@ma if __name__ == '__main__':<CR>
-imap <buffer> @@tc <C-O>mzclass Test%%%(unittest.TestCase):<CR><CR>def setUp(self):<CR>pass<CR><CR>def tearDown(self):<CR>pass<C-O>'z;;
-imap <buffer> @@ex <C-O>mztry:<CR>pass<CR>except %%%:<CR>pass<C-O>'z;;
+nnoremap <leader>t /<template>
+
+ia if!@ if <C-o>mt:<CR>pass<CR>else:<CR>pass<C-o>`t<del>
+ia main!@ if __name__ == '__main__':<esc>
+ia try!@ try:<CR>pass<CR>except Exception as e:<CR>pass><esc>
 
 
 "##############################################################################
@@ -68,11 +68,6 @@ set term=screen-256color
 
 "# grep
 :command! -nargs=1 Pg vimgrep <args> **/*.py
-
-
-"# Refresh
-map <F5> :edit!<CR>
-imap <F5> <esc>:edit!<CR>
 
 
 "# Annotation
@@ -202,6 +197,7 @@ vnoremap <leader>w" c"<C-R>""<esc>
 vnoremap <leader>wb c(<C-R>")<esc>
 vnoremap <leader>wd c{<C-R>"}<esc>
 vnoremap <leader>wl c[<C-R>"]<esc>
+vnoremap <leader>w` c`<C-R>"`<esc>
 
 :command! -range -nargs=1 A <line1>,<line2>s/$/<args>/g
 :command! -range -nargs=1 P execute '<line1>,<line2>s/.\{' . <args> . '}$//g'
@@ -330,15 +326,20 @@ autocmd BufWritePre * %s/\s\+$//e
 " augroup END
 
 "##############################################################################
-" autocommand *.cpp
+" autocommand
 "##############################################################################
-" au BufNewFile,BufRead *.cpp set tabstop=4
 
 augroup group_cpp
     au!
     au BufNewFile,BufRead  *.cpp set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cindent
     au BufNewFile,BufRead  *.h set tabstop=4 softtabstop=4 expandtab shiftwidth=4 cindent
 augroup END
+
+augroup group_md
+    au!
+    au BufNewFile,BufRead *.md vnoremap <leader>B c**<C-R>"**<esc>
+augroup END
+
 
 "##############################################################################
 "
@@ -430,3 +431,5 @@ let vim_markdown_preview_hotkey='<leader>m'
 let vim_markdown_preview_github=1
 " let vim_markdown_preview_toggle=2
 let vim_markdown_preview_temp_file=1
+
+Plugin 'hdima/python-syntax'

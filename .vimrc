@@ -16,6 +16,9 @@ nnoremap <leader>t /<template>
 ia if!@ if <C-o>mt:<CR>pass<CR>else:<CR>pass<C-o>`t<del>
 ia main!@ if __name__ == '__main__':<esc>
 ia try!@ try:<CR>pass<CR>except Exception as e:<CR>pass><esc>
+ia init!@ def __init__(self):<esc>
+ia call!@ def __call__(self):<esc>
+ia del!@ def __del__(self):<esc>
 
 
 "##############################################################################
@@ -249,16 +252,16 @@ nnoremap <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' .
 
 "# Python
 nnoremap <buffer> <F8> :!clear;python %<CR>
-nnoremap <buffer> <F9> :!clear;python3 %<CR>
+nnoremap <buffer> <F9> :!clear;python3.6 %<CR>
 
 function! Py2()
   let g:syntastic_python_python_exec = '/usr/bin/python'
-  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8'
+  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py2'
 endfunction
 
 function! Py3()
-  let g:syntastic_python_python_exec = '/usr/bin/python3'
-  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3'
+  let g:syntastic_python_python_exec = '/usr/bin/python3.6'
+  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3.6'
 endfunction
 
 call Py3()
@@ -384,6 +387,7 @@ Plugin 'scrooloose/syntastic'
 let python_highlight_all=1
 let g:syntastic_python_checkers = ['flake8']
 syntax on
+" ignore a line, '# noqa: ErrorCode'
 
 "# Color Schema
 Plugin 'jnurmine/Zenburn'

@@ -255,7 +255,7 @@ nnoremap <buffer> <F8> :!clear;python %<CR>
 nnoremap <buffer> <F9> :!clear;python3.6 %<CR>
 
 function! Py2()
-  let g:syntastic_python_python_exec = '/usr/bin/python'
+  let g:syntastic_python_python_exec = '/usr/bin/python2.7'
   let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py2'
 endfunction
 

@@ -143,6 +143,7 @@ nnoremap <F5> :source ~/.vimrc<CR>
 
 "# Split line
 nnoremap <leader>s, f,wi<Return><esc>
+nnoremap <leader>ss f<Space>wi<Return><esc>
 nnoremap <leader>sb %cib<Return><C-r>"<C-t><Return><esc>
 nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
 
@@ -261,7 +262,7 @@ endfunction
 
 function! Py3()
   let g:syntastic_python_python_exec = '/usr/bin/python3.6'
-  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3.6'
+  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3'
 endfunction
 
 call Py3()
@@ -386,6 +387,8 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 let python_highlight_all=1
 let g:syntastic_python_checkers = ['flake8']
+let g:syntatic_mode='passive'
+nnoremap <F6> :SyntasticCheck<CR>
 syntax on
 " ignore a line, '# noqa: ErrorCode'
 

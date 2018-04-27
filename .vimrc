@@ -350,6 +350,7 @@ augroup END
 "##############################################################################
 
 autocmd BufEnter *.rules :setlocal filetype=yaml
+autocmd BufEnter afiedt.buf :setlocal filetype=sql
 
 "##############################################################################
 " Vundle init
@@ -387,7 +388,7 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 let python_highlight_all=1
 let g:syntastic_python_checkers = ['flake8']
-let g:syntatic_mode='passive'
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
 nnoremap <F6> :SyntasticCheck<CR>
 syntax on
 " ignore a line, '# noqa: ErrorCode'

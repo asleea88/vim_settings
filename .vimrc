@@ -46,6 +46,7 @@ set showmatch
 set splitbelow
 set splitright
 set ma
+set tw=80
 
 
 " set smartindent
@@ -388,8 +389,9 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 let python_highlight_all=1
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
-nnoremap <F6> :SyntasticCheck<CR>
+nnoremap <F6> :SyntasticToggleMode<CR>
+" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
+" nnoremap <F6> :SyntasticCheck<CR>
 syntax on
 " ignore a line, '# noqa: ErrorCode'
 
@@ -441,3 +443,10 @@ let vim_markdown_preview_github=1
 let vim_markdown_preview_temp_file=1
 
 Plugin 'hdima/python-syntax'
+
+Plugin 'fatih/vim-go'
+
+Plugin 'diepm/vim-rest-console'
+let g:vrc_trigger = '<leader>j'
+let g:vrc_auto_format_response_enabled = 1
+let g:vrc_horizontal_split = 1

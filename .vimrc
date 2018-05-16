@@ -345,12 +345,17 @@ augroup group_md
     au BufNewFile,BufRead *.md vnoremap <leader>B c**<C-R>"**<esc>
 augroup END
 
+augroup group_rest
+    au!
+    au BufNewFile,BufRead *.rest :setlocal filetype=rest
+augroup END
 
 "##############################################################################
 "
 "##############################################################################
 
 autocmd BufEnter *.rules :setlocal filetype=yaml
+" autocmd! BufEnter *.rest :setlocal filetype=rest
 autocmd BufEnter afiedt.buf :setlocal filetype=sql
 
 "##############################################################################
@@ -449,4 +454,17 @@ Plugin 'fatih/vim-go'
 Plugin 'diepm/vim-rest-console'
 let g:vrc_trigger = '<leader>j'
 let g:vrc_auto_format_response_enabled = 1
-let g:vrc_horizontal_split = 1
+" let g:vrc_horizontal_split = 1
+let g:vrc_allow_get_request_body = 1
+let g:vrc_elasticsearch_support = 1
+let g:vrc_curl_opts = {
+  \ '--connect-timeout' : 10,
+  \ '-b': '/path/to/cookie',
+  \ '-c': '/path/to/cookie',
+  \ '-L': '',
+  \ '-i': '',
+  \ '--max-time': 60,
+  \ '--ipv4': '',
+  \ '-k': '',
+\}
+

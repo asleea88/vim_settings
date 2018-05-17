@@ -233,7 +233,7 @@ map <leader>mI ?if.*:<CR>
 
 "# pretty print
 vmap <leader>ppx :!xmllint --format -<CR>
-vmap <leader>ppj :%!python -m json.tool<CR>
+vmap <leader>ppj :%!jq '.'<CR>
 
 
 "# Select all
@@ -454,7 +454,7 @@ Plugin 'fatih/vim-go'
 Plugin 'diepm/vim-rest-console'
 let g:vrc_trigger = '<leader>j'
 let g:vrc_auto_format_response_enabled = 1
-" let g:vrc_horizontal_split = 1
+let g:vrc_horizontal_split = 1
 let g:vrc_allow_get_request_body = 1
 let g:vrc_elasticsearch_support = 1
 let g:vrc_curl_opts = {
@@ -462,8 +462,8 @@ let g:vrc_curl_opts = {
   \ '-b': '/path/to/cookie',
   \ '-c': '/path/to/cookie',
   \ '-L': '',
-  \ '-i': '',
   \ '--max-time': 60,
+  \ '-i': '',
   \ '--ipv4': '',
   \ '-k': '',
 \}

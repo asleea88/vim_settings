@@ -27,4 +27,6 @@ $ mv flake8 flake8-py3
 $ pip install flake8
 ```
 
+### ~/.basrhc
+export TERM='xterm-256color'
 

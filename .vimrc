@@ -46,7 +46,7 @@ set showmatch
 set splitbelow
 set splitright
 set ma
-set tw=80
+set cc=80
 
 
 " set smartindent
@@ -147,6 +147,10 @@ nnoremap <leader>s, f,wi<Return><esc>
 nnoremap <leader>ss f<Space>wi<Return><esc>
 nnoremap <leader>sb %cib<Return><C-r>"<C-t><Return><esc>
 nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
+
+"# Syntax
+nnoremap <F12> :syntax sync fromstart<CR>
+inoremap <F12> <esc>:syntax sync fromstart<CR>
 
 
 "# Save
@@ -259,11 +263,13 @@ nnoremap <buffer> <F9> :!clear;python3.6 %<CR>
 function! Py2()
   let g:syntastic_python_python_exec = '/usr/bin/python2.7'
   let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py2'
+  let g:ycm_python_binary_path = '/usr/bin/python2.7'
 endfunction
 
 function! Py3()
   let g:syntastic_python_python_exec = '/usr/bin/python3.6'
   let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3'
+  let g:ycm_python_binary_path = '/usr/bin/python3.6'
 endfunction
 
 call Py3()
@@ -433,6 +439,7 @@ let g:ycm_confirm_extra_conf = 0
 " let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_trigger = 1
+let g:ycm_python_binary_path = '/usr/bin/python3.6'
 
 "# Multiple Curosr
 Plugin 'terryma/vim-multiple-cursors'
@@ -445,7 +452,7 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 let vim_markdown_preview_hotkey='<leader>m'
 let vim_markdown_preview_github=1
 " let vim_markdown_preview_toggle=2
-let vim_markdown_preview_temp_file=1
+" let vim_markdown_preview_temp_file=1
 
 Plugin 'hdima/python-syntax'
 

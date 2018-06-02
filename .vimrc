@@ -40,14 +40,16 @@ ia atgame@ 13.124.111.51
 "##############################################################################
 let mapleader = "\<Space>"
 
-set clipboard=unnamedplus
+" set clipboard=unnamedplus  # It didn't work in mac
+set clipboard=unnamed
 set cursorline
 set showmatch
 set splitbelow
 set splitright
 set ma
 set cc=80
-
+set backspace=indent,eol,start
+set shell=/bin/bash
 
 " set smartindent
 set nowrap
@@ -260,16 +262,21 @@ nnoremap <leader>. :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' .
 nnoremap <buffer> <F8> :!clear;python %<CR>
 nnoremap <buffer> <F9> :!clear;python3.6 %<CR>
 
+
 function! Py2()
-  let g:syntastic_python_python_exec = '/usr/bin/python2.7'
-  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py2'
-  let g:ycm_python_binary_path = '/usr/bin/python2.7'
+    let py2exec = system('printf %s "$(which python2.7)"')
+    let py2flake = system('printf %s "$(which flake8-py2)"')
+    let g:syntastic_python_python_exec = py2exec
+    let g:syntastic_python_flake8_exec = py2flake
+    let g:ycm_python_binary_path = py2exec
 endfunction
 
 function! Py3()
-  let g:syntastic_python_python_exec = '/usr/bin/python3.6'
-  let g:syntastic_python_flake8_exec = '/usr/local/bin/flake8-py3'
-  let g:ycm_python_binary_path = '/usr/bin/python3.6'
+    let py3exec = system('printf %s "$(which python3.6)"')
+    let py3flake = system('printf %s "$(which flake8-py3)"')
+    let g:syntastic_python_python_exec = py3exec
+    let g:syntastic_python_flake8_exec = py3flake
+    let g:ycm_python_binary_path = py3exec
 endfunction
 
 call Py3()
@@ -439,7 +446,7 @@ let g:ycm_confirm_extra_conf = 0
 " let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
 nnoremap <leader>mr :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_trigger = 1
-let g:ycm_python_binary_path = '/usr/bin/python3.6'
+" let g:ycm_python_binary_path = '/usr/bin/python3.6'
 
 "# Multiple Curosr
 Plugin 'terryma/vim-multiple-cursors'

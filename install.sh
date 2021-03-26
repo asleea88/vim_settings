@@ -7,6 +7,7 @@ brew update
 brew install tmux
 brew install vim
 brew install fzf
+/usr/local/opt/fzf/install
 brew install ack
 brew install pyenv
 

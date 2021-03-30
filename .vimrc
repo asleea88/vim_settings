@@ -258,14 +258,32 @@ syntax on
 
 
 "# Color Schema
-Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
-if has('gui_running')
-    set background=dark
-    colorscheme solarized
-else
-    colorscheme zenburn
-endif
+"  - zenburn
+" Plugin 'jnurmine/Zenburn'
+" Plugin 'altercation/vim-colors-solarized'
+" if has('gui_running')
+"     set background=dark
+"     colorscheme solarized
+" else
+"     colorscheme zenburn
+" endif
+"
+" - gruvbox
+Plugin 'morhetz/gruvbox'
+autocmd vimenter * ++nested colorscheme gruvbox
+set bg=dark
+let g:gruvbox_contrast_dark='soft'
+
+" - dracula
+" Plugin 'dracula/vim', { 'name': 'dracula' }
+" syntax enable
+" colorscheme dracula
+
+" - molokai
+" Plugin 'tomasr/molokai'
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+
 " call togglebg#map("<F5>")
 
 "# File Browsing
@@ -282,13 +300,14 @@ nnoremap <C-p> :Files<CR>
 set rtp+=/usr/local/opt/fzf
 
 "# Power Line
-Plugin 'itchyny/lightline.vim'
-set laststatus=2
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
-      \ }
-      \ }
+" Plugin 'itchyny/lightline.vim'
+" set laststatus=2
+" let g:lightline = {
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
+"       \ }
+"       \ }
+Plugin 'vim-airline/vim-airline'
 
 
 "# Auto complete

@@ -1,5 +1,6 @@
 set -o vi
 export CLICOLOR=1
+export PS1="\u:\w$ "
 
 # bash alias
 alias sbashrc="source ~/.bash_profile"

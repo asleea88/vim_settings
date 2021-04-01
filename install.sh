@@ -2,9 +2,9 @@
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew update
 brew install tmux
+brew install reattach-to-user-namespace
 brew install vim
 brew install fzf
 /usr/local/opt/fzf/install

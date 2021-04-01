@@ -10,7 +10,9 @@ brew install fzf
 /usr/local/opt/fzf/install
 brew install ack
 brew install pyenv
+brew install pyenv-virtualenv
 brew install ripgrep
+brew install awscli
 
 # git auto-complete
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash

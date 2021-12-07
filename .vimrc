@@ -75,6 +75,7 @@ nnoremap d "_d
 nnoremap D "_D
 nnoremap x "_x
 vnoremap x "_x
+nnoremap s "_s
 
 
 "# Split line
@@ -113,8 +114,8 @@ nnoremap <silent> <leader>co :copen<CR>
 
 
 "# Return and BS and esc
-nnoremap <leader><Return> I<Return><esc>
-nnoremap <leader><Space> i<Space><esc>
+" nnoremap <leader><Return> I<Return><esc>
+" nnoremap <leader><Space> i<Space><esc>
 " inoremap .. <esc>A
 " inoremap ,, <esc>o
 
@@ -138,6 +139,7 @@ function! Py2()
     let g:syntastic_python_python_exec = py2exec
     let g:syntastic_python_flake8_exec = py2flake
     let g:ycm_python_binary_path = py2exec
+    let g:syntastic_python_flake8_args = '--config ~/.config/flake8'
 endfunction
 
 function! Py3()
@@ -146,6 +148,7 @@ function! Py3()
     let g:syntastic_python_python_exec = py3exec
     let g:syntastic_python_flake8_exec = py3flake
     let g:ycm_python_binary_path = py3exec
+    let g:syntastic_python_flake8_args = '--config ~/.config/flake8'
 endfunction
 
 call Py3()
@@ -295,6 +298,7 @@ nnoremap <leader>sn :NERDTree<CR>
 
 
 "# Super Searching, <C-p>
+Plugin 'junegunn/fzf', { 'dir': '~/opt/fzf' }
 Plugin 'junegunn/fzf.vim'
 nnoremap <C-p> :Files<CR>
 set rtp+=/usr/local/opt/fzf
@@ -308,7 +312,7 @@ set rtp+=/usr/local/opt/fzf
 "       \ }
 "       \ }
 Plugin 'vim-airline/vim-airline'
-
+Plugin 'vim-airline/vim-airline-themes'
 
 "# Auto complete
 Plugin 'davidhalter/jedi-vim'
@@ -382,28 +386,28 @@ function! s:noregexp(pattern) abort
   return '\V' . escape(a:pattern, '\')
 endfunction
 
-function! s:config() abort
-  return {'converters': [function('s:noregexp')]}
-endfunction
+" function! s:config() abort
+"   return {'converters': [function('s:noregexp')]}
+" endfunction
 
-noremap <silent><expr> z/ incsearch#go(<SID>config())
+" noremap <silent><expr> z/ incsearch#go(<SID>config())
 
 "# Snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-set rtp+=~/.vim/my-snippets/
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+" set rtp+=~/.vim/my-snippets/
 
-" set rtp+=~/.vim/bundle/vim-snippets
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsListSnippets="<C-tab>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-" :UltiSnipsEdit
-let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'
-" let g:UltiSnipsSnippetsDir = '~/vim_settings/snippets'
-" let g:UltiSnipsSnippetDirectories=["UltiSnips", ".vim/bundle/aws-vim/snips"]
-" let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/vim_settings/snippets"]
+" " set rtp+=~/.vim/bundle/vim-snippets
+" let g:UltiSnipsExpandTrigger="<C-l>"
+" let g:UltiSnipsListSnippets="<C-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<C-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+" " :UltiSnipsEdit
+" let g:UltiSnipsEditSplit="vertical"
+" " let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips'
+" " let g:UltiSnipsSnippetsDir = '~/vim_settings/snippets'
+" " let g:UltiSnipsSnippetDirectories=["UltiSnips", ".vim/bundle/aws-vim/snips"]
+" " let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/vim_settings/snippets"]
 
 Plugin 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_disable_when_zoomed = 0
@@ -416,3 +420,10 @@ Plugin 'alfredodeza/pytest.vim'
 Plugin 'janko/vim-test'
 
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'chrisbra/csv.vim'
+
+Plugin 'udalov/kotlin-vim'
+
+
+" EX
+" for i in range(1,10) | put ='192.168.0.'.i | endfor

@@ -1,31 +1,14 @@
 let mapleader = " "
-
-set ic
 set clipboard=unnamed
 
-"# Delete
-nnoremap d "_d
-nnoremap D "_D
-nnoremap x "_x
-vnoremap x "_x
-
-"# esc
 imap df <esc>
 vmap df <esc>
 
-nnoremap <leader>q1 :q!<CR>
-nnoremap <leader>qq :q<CR>
-nnoremap <leader>W :w<CR>
-
-"# Split windows
-nnoremap <leader>sh :split<CR>
-nnoremap <leader>sv :vsplit<CR>
-
-"# Move windows
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+"# Split line
+nnoremap <leader>s, f,wi<Return><esc>
+nnoremap <leader>ss f<Space>wi<Return><esc>
+nnoremap <leader>sb %cib<Return><C-r>"<C-t><Return><esc>
+nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
 
 "# Tab
 nnoremap > >>
@@ -33,39 +16,83 @@ nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
-"# Goto
-nnoremap <C-p> :action GotoFile<CR>
-" nnoremap <C-c> :action GotoClass<CR>
-" nnoremap <C-s> :action GotoSymbol<CR>
-
-"# Move line
-nnoremap ˚ :action MoveLineUp<CR>zz
-nnoremap ∆ :action MoveLineDown<CR>zz
-vnoremap ˚ :action MoveLineUp<CR>zz
-vnoremap ∆ :action MoveLineDown<CR>zz
-" MoveStatementUp, MoveStatementDown<CR>
-
-nnoremap <leader>sn :action ActivateProjectToolWindow<CR>
-nnoremap == :action ReformatCode<CR>
+"# Search
+set ignorecase
+set smartcase
+set nohlsearch
 
 "# Plugin
+set NERDTree
+nnoremap <leader>sn :NERDTree<CR>
+
+"# Delete
+nnoremap d "_d
+nnoremap D "_D
+nnoremap x "_x
+vnoremap x "_x
+nnoremap s "_s
+
+"# Save
+nnoremap <leader>q1 :q!<CR>
+nnoremap <leader>qq :q<CR>
+nnoremap <leader>qa :qa<CR>
+nnoremap <leader>wq :wq<CR>
+nnoremap <leader>W :w<CR>
+nnoremap <leader>wa :wa<CR>
+vnoremap <leader>q1 <esc>:q!<CR>
+vnoremap <leader>wq <esc>:wq<CR>
+vnoremap <leader>ww <esc>:w<CR>
+
+" # Tab
+nmap <C-s>1 :action GoToTab1<CR>
+nmap <C-s>2 :action GoToTab2<CR>
+nmap <C-s>3 :action GoToTab3<CR>
+nmap <C-s>4 :action GoToTab4<CR>
+nmap <C-s>5 :action GoToTab5<CR>
+nmap <C-s>6 :action GoToTab6<CR>
+nmap <C-s>7 :action GoToTab7<CR>
+nmap <C-s>8 :action GoToTab8<CR>
+nmap <C-s>9 :action GoToTab9<CR>
+" nmap <C-s>% :action SplitVertically<CR>
+" nmap <C-s>" :action SplitHorizontally<CR>
+nmap <C-s>% :action MoveTabRight<CR>
+nmap <C-s>" :action MoveTabDown<CR>
+nmap <C-s>} :action MoveEditorToOppositeTabGroup<CR>
+nmap <C-s>{ :action MoveEditorToOppositeTabGroup<CR>
+# MoveTabRight, MoveTabDown
+
+
+" # formating
+nmap <leader>s, :action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.ChopParameterListIntention<CR>
+
+" # beaping
+set visualbell
+set noerrorbells
+
+" # Conflict
+nmap <leader><C-t> :action Refactorings.QuickListPopupAction<CR>
+nmap <leader><C-o> :action OverrideMethods<CR>
+
+"# Plugin
+set easymotion
+map <leader>e <Plug>(easymotion-prefix)
+let g:EasyMotion_smartcase = 1
+
 set surround
+
+set highlightedyank
 
 set commentary
 
-set easymotion
-let g:EasyMotion_smartcase = 1
-map <leader>e <Plug>(easymotion-prefix)
-
 set multiple-cursors
 
-nnoremap <leader>hu :action Git.CheckoutGroup<CR>
+set exchange
 
-nnoremap <leader>sa :action Annotate<CR>
-nnoremap <leader>sg :action Git.Menu<CR>
-nnoremap <leader>sp :action com.jetbrains.python.console.RunPythonOrDebugConsoleAction<CR>
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
 
-nnoremap <leader>s, f,wi<Return><esc>
-nnoremap <leader>ss f<Space>wi<Return><esc>
-nnoremap <leader>sb %cib<Return><C-r>"<esc>
-nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
+nmap <leader>md :action GotoImplementation<CR>
+" nmap <leader>mD :action VimGotoDeclaration<CR>
+
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l

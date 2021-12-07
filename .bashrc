@@ -6,7 +6,6 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 
-# vi mode
 export EDITOR=vi
 
 # bash alias
@@ -15,11 +14,22 @@ alias bashrc="vi ~/.bash_profile"
 alias vimrc="vi ~/.vimrc"
 alias awsrc="vi ~/.aws/credentials"
 alias awsrc2="vi ~/.aws/config"
+alias mfarc="vi ~/.aws/mfa_authenticator.ini"
+alias sniprc="vi ~/.vim/bundle/vim-snippets/UltiSnips/all.snippets"
 
 # git alias
 alias gs="git status"
 alias gd="git diff"
 alias gb="git branch"
+alias gl="git log"
+alias lg="lazygit"
+
+export PATH=$PATH:/opt/homebrew/bin
+
+#tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
 
 # git-auto-complete
 if [ -f ~/.git-completion.bash ]; then
@@ -27,5 +37,8 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 # pyenv alias
-alias da="pyenv deactivate"
-eval "$(pyenv init -)"
+# eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
+# alias da="pyenv deactivate"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

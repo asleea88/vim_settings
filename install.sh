@@ -13,6 +13,7 @@ brew install pyenv
 brew install pyenv-virtualenv
 brew install ripgrep
 brew install awscli
+brew install lazygit
 
 # git auto-complete
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash

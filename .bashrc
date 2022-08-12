@@ -37,8 +37,8 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 # pyenv alias
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
-# alias da="pyenv deactivate"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+alias da="pyenv deactivate"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

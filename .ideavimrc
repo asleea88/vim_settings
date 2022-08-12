@@ -61,13 +61,20 @@ nmap <C-s>} :action MoveEditorToOppositeTabGroup<CR>
 nmap <C-s>{ :action MoveEditorToOppositeTabGroup<CR>
 # MoveTabRight, MoveTabDown
 
+" # Git
+nmap <leader>gb :action Annotate<CR>
+nmap <leader>hu :action Vcs.RollbackChangedLines<CR>
+
+" nmap == :action ReformatCode<CR>
 
 " # formating
-nmap <leader>s, :action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.ChopParameterListIntention<CR>
+" nmap <leader>s, :action IntentionActionAsAction_org.jetbrains.kotlin.idea.intentions.ChopParameterListIntention<CR>
+nmap <leader>st :action ToggleInlayHintsGloballyAction<CR>:aciton ToggleInlineHintsAction<CR>
 
 " # beaping
 set visualbell
 set noerrorbells
+
 
 " # Conflict
 nmap <leader><C-t> :action Refactorings.QuickListPopupAction<CR>
@@ -91,8 +98,35 @@ set exchange
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
-nmap <leader>md :action GotoImplementation<CR>
+nmap <leader>mi :action GotoImplementation<CR>
+nmap <leader>md :action GotoDeclaration<CR>
+nmap <leader>mr :action FindUsages<CR>
 " nmap <leader>mD :action VimGotoDeclaration<CR>
 
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+
+
+" # Multiple cursor
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
+set argtextobj
+set textobj-indent
+
+nmap <leader>mm :action MethodUp<CR>
+nmap <leader>mM :action MethodDown<CR>
+nmap <leader>mt :action GotoTest<CR>
+nmap <leader>mp :action ManageRecentProjects<CR>
+
+" #Split
+nmap <C-s># :action SplitHorizontally<CR>
+nmap <C-s>" :action SplitVertically<CR>

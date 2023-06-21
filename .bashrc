@@ -1,3 +1,4 @@
+#!/bin/bash
 set -o vi
 
 # bash color
@@ -42,3 +43,7 @@ eval "$(pyenv init -)"
 alias da="pyenv deactivate"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+source /Users/sam/.docker/init-bash.sh || true # Added by Docker Desktop
+
+unset DOCKER_HOST

@@ -60,6 +60,8 @@ nmap <C-s>" :action MoveTabDown<CR>
 nmap <C-s>} :action MoveEditorToOppositeTabGroup<CR>
 nmap <C-s>{ :action MoveEditorToOppositeTabGroup<CR>
 # MoveTabRight, MoveTabDown
+# SplitHorizontally
+# SplitVertically
 
 " # Git
 nmap <leader>gb :action Annotate<CR>
@@ -128,5 +130,9 @@ nmap <leader>mt :action GotoTest<CR>
 nmap <leader>mp :action ManageRecentProjects<CR>
 
 " #Split
-nmap <C-s># :action SplitHorizontally<CR>
-nmap <C-s>" :action SplitVertically<CR>
+
+
+MoveTabDown
+
+
+nmap <leader>sf :action EditSourceInNewWindow<CR>

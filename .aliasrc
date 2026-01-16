@@ -1,0 +1,20 @@
+#!/bin/bash
+# git alias
+alias gs="git status"
+alias gd="git diff"
+alias gb="git branch"
+alias gl="git log"
+alias lg="lazygit"
+
+alias vi="nvim"
+alias vim="nvim"
+alias view="nvim -R"
+
+alias ssm-dev="gossm start --profile dev"
+alias ssm-stg="gossm start --profile stg"
+alias ssm-pkr="gossm start --profile pkr"
+alias ssm-pjp="gossm start --profile pjp"
+alias ssm-ptw="gossm start --profile ptw"
+
+alias ide="idea ."
+alias tmuxrc="vi ~/.tmux.conf"

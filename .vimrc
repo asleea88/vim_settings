@@ -13,7 +13,8 @@ set ma
 set cc=80
 set backspace=indent,eol,start
 
-set shell=/bin/bash
+set shell=/bin/zsh
+set shellcmdflag=-ic
 " set smartindent
 " set nowrap
 set mouse=a
@@ -45,27 +46,6 @@ nnoremap <leader>vs :vsplit<CR>
 nnoremap <leader>ann 79i#<esc>YpO#<Space>
 
 
-"# grep
-:command! -nargs=1 Pg vimgrep <args> **/*.py
-
-
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-"# Trace
-map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
-
-"# iabbrev
-map <F4> :call Sc()
-
-function! Sc(...)
-    if a:0 < 2
-	execute ":iunabbrev " . a:1
-    else
-	execute ":iabbrev " . a:1 . " " . a:2
-    endif
-endfunction
-
-
 "# Delete
 nnoremap d "_d
 nnoremap D "_D
@@ -74,24 +54,12 @@ vnoremap x "_x
 nnoremap s "_s
 
 
-"# Split line
-nnoremap <leader>s, f,wi<Return><esc>
-nnoremap <leader>ss f<Space>wi<Return><esc>
-nnoremap <leader>sb %cib<Return><C-r>"<C-t><Return><esc>
-nnoremap <leader>sB %ciB<Return><C-r>"<Return><esc>
-
 "# Tab
 nnoremap > >>
 nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
-imap df <esc>
-vmap df <esc>
-
-" 한글 (두벌식 자판 기준)
-imap ㅇㄹ <ESC>
-vmap ㅇㄹ <ESC>
 
 "# Highlight selected word
 set nohlsearch
@@ -118,20 +86,6 @@ filetype plugin indent on    " required
 "##############################################################################
 " Plug in
 "##############################################################################
-
-"# Audo-indent
-Plugin 'vim-scripts/indentpython.vim'
-
-"# Syntax Checking/Highlighting
-Plugin 'scrooloose/syntastic'
-" execute pathogen#infect()
-let python_highlight_all=1
-let g:syntastic_python_checkers = ['flake8']
-nnoremap <F6> :SyntasticToggleMode<CR>
-" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': []  }
-" nnoremap <F6> :SyntasticCheck<CR>
-syntax on
-"
 " - gruvbox
 Plugin 'morhetz/gruvbox'
 autocmd vimenter * ++nested colorscheme gruvbox
@@ -142,7 +96,6 @@ let g:gruvbox_contrast_dark='soft'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-:command! NE NERDTree
 nnoremap <leader>sn :NERDTree<CR>
 
 
@@ -152,45 +105,11 @@ Plugin 'junegunn/fzf.vim'
 nnoremap <C-p> :Files<CR>
 set rtp+=/usr/local/opt/fzf
 
-"# Power Line
-" Plugin 'itchyny/lightline.vim'
-" set laststatus=2
-" let g:lightline = {
-"       \ 'active': {
-"       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
-"       \ }
-"       \ }
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-"# Auto complete
-Plugin 'davidhalter/jedi-vim'
-let g:jedi#goto_command = "<leader>md"
-let g:jedi#usages_command = "<leader>mr"
-
 "# Multiple Curosr
 Plugin 'terryma/vim-multiple-cursors'
-
-"# Auto Pairs
-Plugin 'jiangmiao/auto-pairs'
-
-"# Markdown Previewer
-Plugin 'JamshedVesuna/vim-markdown-preview'
-let vim_markdown_preview_hotkey='<leader>sm'
-let vim_markdown_preview_github=1
-" let vim_markdown_preview_toggle=2
-" let vim_markdown_preview_temp_file=1
-
-Plugin 'hdima/python-syntax'
-
-Plugin 'fatih/vim-go'
-
-Plugin 'nathanaelkane/vim-indent-guides'
-" let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_indent_levels = 5
-nnoremap <leader>si :IndentGuidesToggle<CR>
 
 Plugin 'tpope/vim-surround'
 Plugin 'kshenoy/vim-signature'
@@ -202,11 +121,7 @@ set updatetime=100
 nnoremap <leader>sg :GitGutterSignsToggle<CR>
 nnoremap <leader>gb :Git blame<CR>
 
-Plugin 'majutsushi/tagbar'
-nnoremap <leader>st :TagbarToggle<CR>
-
 Plugin 'tpope/vim-commentary'
-
 Plugin 'mileszs/ack.vim'
 cnoreabbrev Ack Ack!
 

@@ -18,3 +18,5 @@ alias ssm-ptw="gossm start --profile ptw"
 
 alias ide="idea ."
 alias tmuxrc="vi ~/.tmux.conf"
+
+alias python=python3

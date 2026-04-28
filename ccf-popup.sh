@@ -26,6 +26,4 @@ if [ -d "$target/$WORKTREE_DIR" ] && [ "$(ls -A "$target/$WORKTREE_DIR" 2>/dev/n
   fi
 fi
 
-tmux new-window -c "$target" -n "$(basename "$project")" claude \; \
-  split-window -h -l 40% -c "$target" \; \
-  select-pane -L
+tmux new-window -c "$target" -n "$(basename "$project")" claude \;

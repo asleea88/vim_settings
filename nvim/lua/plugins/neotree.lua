@@ -17,6 +17,12 @@ return {
         mappings = {
           ["o"] = "open",
           ["O"] = "system_open",
+          ["h"] = "close_node",
+          ["l"] = "open",
+          ["zo"] = "toggle_node",
+          ["zc"] = "close_node",
+          ["zR"] = "expand_all_nodes",
+          ["zM"] = "close_all_nodes",
           ["oc"] = "none",
           ["od"] = "none",
           ["og"] = "none",
